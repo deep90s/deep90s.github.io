@@ -24,16 +24,11 @@ def main():
         risk_percentage = ""
 
     # Convert the input fields back to numeric values if they are not empty strings
-    if account_size == "":
+    account_size_str = str(account_size)
+    if account_size_str == "":
         account_size = 0.0
-    if max_stocks_portfolio == "":
-        max_stocks_portfolio = 0
-    if trade_entry == "":
-        trade_entry = 0.0
-    if stoploss == "":
-        stoploss = 0.0
-    if risk_percentage == "":
-        risk_percentage = 0.0
+    else:
+        account_size = float(account_size_str)
 
     # Check if the input fields are empty
     if not account_size.empty():
@@ -57,4 +52,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-    
