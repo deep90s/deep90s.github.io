@@ -1,29 +1,45 @@
 import streamlit as st
 
-# Define a function to clear the input
-def clearInput(input_id):
-    """Clears the input with the given ID."""
-    st.session_state[input_id] = ''
-
 def main():
-    # Set default text for the inputs
-    default_account_size = 100000.0
-    default_max_stocks_portfolio = 10
-    default_trade_entry = 100.0
-    default_stoploss = 95.0
-    default_risk_percentage = 2.0
+    st.title("Position Sizing Calculator")
 
     # Get user inputs
-    account_size = st.number_input("Enter your account size:", step=0.01, key="account_size", value=default_account_size, on_change=lambda: clearInput("account_size"))
-    max_stocks_portfolio = st.number_input("Enter the maximum number of stocks in your portfolio:", step=1, key="max_stocks_portfolio", value=default_max_stocks_portfolio, on_change=lambda: clearInput("max_stocks_portfolio"))
+    account_size = st.number_input("Enter your account size:", step=0.01)
+    max_stocks_portfolio = st.number_input("Enter the maximum number of stocks in your portfolio:", step=1)
 
     # Get user inputs for a specific trade
-    trade_entry = st.number_input("Enter the trade entry point:", step=0.01, key="trade_entry", value=default_trade_entry, on_change=lambda: clearInput("trade_entry"))
-    stoploss = st.number_input("Enter the stop loss price:", step=0.01, key="stoploss", value=default_stoploss, on_change=lambda: clearInput("stoploss"))
-    risk_percentage = st.number_input("Enter the percentage of capital you want to risk per trade:", step=0.01, key="risk_percentage", value=default_risk_percentage, on_change=lambda: clearInput("risk_percentage"))
+    trade_entry = st.number_input("Enter the trade entry point:", step=0.01)
+    stoploss = st.number_input("Enter the stop loss price:", step=0.01)
+    risk_percentage = st.number_input("Enter the percentage of capital you want to risk per trade:", step=0.01)
 
-    # Rest of your code remains unchanged.
-    # ...
+    # Calculate position size and round it to the nearest 1st digit
+    stop_difference = trade_entry - stoploss
+
+    if stop_difference == 0:
+        st.warning("Stop loss cannot be equal to trade entry. Please provide different inputs.")
+        return
+
+    position_size = round((account_size * (risk_percentage / 100)) / stop_difference, 1)
+
+    # Calculate total buy value
+    total_buy_value = round(position_size * trade_entry)
+
+    # Calculate the percentage of the capital used for this trade
+    percentage_used = round((total_buy_value / account_size) * 100, 2)
+
+    # Calculate how much money will be at risk per trade
+    money_at_risk_per_trade = round(position_size * stop_difference, 2)
+
+    # Display the results
+    st.write("Account size:", account_size)
+    st.write("Maximum number of stocks in portfolio:", max_stocks_portfolio)
+    st.write("Trade entry point:", trade_entry)
+    st.write("Stop loss price:", stoploss)
+    st.write("Risk percentage per trade:", risk_percentage)
+    st.write("Position size per stock:", position_size, "Shares")
+    st.write("Total buy value:", total_buy_value)
+    st.write("Percentage of capital used for this trade:", percentage_used, "%")
+    st.write("Money at risk per trade:", money_at_risk_per_trade)
 
 if __name__ == "__main__":
     main()
