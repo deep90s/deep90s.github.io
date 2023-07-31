@@ -6,11 +6,11 @@ def clearInput(input_id):
     st.session_state[input_id] = ''
 
 # Set default text for the inputs
-default_account_size = 100000.0
-default_max_stocks_portfolio = 10
-default_trade_entry = 100.0
-default_stoploss = 95.0
-default_risk_percentage = 2.0
+default_account_size = 0.0
+default_max_stocks_portfolio = 6
+default_trade_entry = 0.0
+default_stoploss = 0.0
+default_risk_percentage = 0.0
 
 # Get user inputs
 account_size = st.number_input("Enter your account size:", step=0.01, key="account_size", value=default_account_size, on_change=clearInput)
