@@ -35,23 +35,17 @@ def main():
     if risk_percentage == "":
         risk_percentage = 0.0
 
-    # Calculate position size and round it to the nearest 1st digit
-    stop_difference = trade_entry - stoploss
+    # Check if the input fields are empty
+    if not account_size.empty():
+        stop_difference = trade_entry - stoploss
 
-    if stop_difference == 0:
-        st.warning("Stop loss cannot be equal to trade entry. Please provide different inputs.")
-        return
+        if stop_difference == 0:
+            st.warning("Stop loss cannot be equal to trade entry. Please provide different inputs.")
+            return
 
-    position_size = round((account_size * (risk_percentage / 100)) / stop_difference, 1)
-
-    # Calculate total buy value
-    total_buy_value = round(position_size * trade_entry)
-
-    # Calculate the percentage of the capital used for this trade
-    percentage_used = round((total_buy_value / account_size) * 100, 2)
-
-    # Calculate how much money will be at risk per trade
-    money_at_risk_per_trade = round(position_size * stop_difference, 2)
+        position_size = round((account_size * (risk_percentage / 100)) / stop_difference, 1)
+    else:
+        position_size = ""
 
     # Display the results
     st.write("Account size:", account_size)
@@ -60,9 +54,7 @@ def main():
     st.write("Stop loss price:", stoploss)
     st.write("Risk percentage per trade:", risk_percentage)
     st.write("Position size per stock:", position_size, "Shares")
-    st.write("Total buy value:", total_buy_value)
-    st.write("Percentage of capital used for this trade:", percentage_used, "%")
-    st.write("Money at risk per trade:", money_at_risk_per_trade)
 
 if __name__ == "__main__":
     main()
+    
