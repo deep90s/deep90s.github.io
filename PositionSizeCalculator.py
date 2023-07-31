@@ -40,7 +40,7 @@ def main():
     st.write("Position size per stock:", position_size, "Shares")
     st.write("Total buy value:", total_buy_value)
     st.write("Percentage of capital used for this trade:", percentage_used, "%")
-    st.write("Money at risk per trade:", money_at_risk_per_trade)
+    
 
 if __name__ == "__main__":
     main()
