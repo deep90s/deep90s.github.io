@@ -36,6 +36,7 @@ def main():
     st.write("Trade entry point:", trade_entry)
     st.write("Stop loss price:", stoploss)
     st.write("Risk percentage per trade:", risk_percentage)
+    st.write("Money at risk per trade:", money_at_risk_per_trade)
     st.write("Position size per stock:", position_size, "Shares")
     st.write("Total buy value:", total_buy_value)
     st.write("Percentage of capital used for this trade:", percentage_used, "%")
