@@ -1,4 +1,12 @@
 import streamlit as st
+from streamlit.components.html import html
+
+# Get the AdSense code
+adsense_code = """
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1846635093121225"
+     crossorigin="anonymous"></script>
+"""
+
 
 def main():
     st.title("Position Sizing Calculator")
@@ -42,5 +50,7 @@ def main():
     st.write("Percentage of capital used for this trade:", percentage_used, "%")
     
 
+    # Embed the AdSense code in the app
+    st.components.html(adsense_code)
 if __name__ == "__main__":
     main()
