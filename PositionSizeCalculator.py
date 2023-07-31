@@ -1,15 +1,13 @@
 import streamlit as st
 from streamlit.components.html import html
-
-# Get the AdSense code
-<html>
-<body>
 adsense_code = """
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1846635093121225"
      crossorigin="anonymous"></script>
 """
-</body>
-</html>
+
+# Embed the AdSense code using the HTML component
+st.components.html(adsense_code)
+
 
 def main():
     st.title("Position Sizing Calculator")
