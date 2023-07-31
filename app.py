@@ -14,6 +14,11 @@ def main():
 
     # Calculate position size and round it to the nearest 1st digit
     stop_difference = trade_entry - stoploss
+
+    if stop_difference == 0:
+        st.warning("Stop loss cannot be equal to trade entry. Please provide different inputs.")
+        return
+
     position_size = round((account_size * (risk_percentage / 100)) / stop_difference, 1)
 
     # Calculate total buy value
