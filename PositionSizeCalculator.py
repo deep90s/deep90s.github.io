@@ -21,13 +21,13 @@ def main():
     )
 
     # Get user inputs
-    account_size = st.number_input("Enter your account size:", step=0.01, key="account_size", on_change=clearInput)
-    max_stocks_portfolio = st.number_input("Enter the maximum number of stocks in your portfolio:", step=1, key="max_stocks_portfolio", on_change=clearInput)
+    account_size = st.number_input("Enter your account size:", step=0.01, key="account_size", on_click=clearInput)
+    max_stocks_portfolio = st.number_input("Enter the maximum number of stocks in your portfolio:", step=1, key="max_stocks_portfolio", on_click=clearInput)
 
     # Get user inputs for a specific trade
-    trade_entry = st.number_input("Enter the trade entry point:", step=0.01, key="trade_entry", on_change=clearInput)
-    stoploss = st.number_input("Enter the stop loss price:", step=0.01, key="stoploss", on_change=clearInput)
-    risk_percentage = st.number_input("Enter the percentage of capital you want to risk per trade:", step=0.01, key="risk_percentage", on_change=clearInput)
+    trade_entry = st.number_input("Enter the trade entry point:", step=0.01, key="trade_entry", on_click=clearInput)
+    stoploss = st.number_input("Enter the stop loss price:", step=0.01, key="stoploss", on_click=clearInput)
+    risk_percentage = st.number_input("Enter the percentage of capital you want to risk per trade:", step=0.01, key="risk_percentage", on_click=clearInput)
 
     # Rest of your code remains unchanged.
     # ...
