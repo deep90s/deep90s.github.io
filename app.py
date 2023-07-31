@@ -27,6 +27,9 @@ def main():
     # Calculate the percentage of the capital used for this trade
     percentage_used = round((total_buy_value / account_size) * 100, 2)
 
+    # Calculate how much money will be at risk per trade
+    money_at_risk_per_trade = round(position_size * stop_difference, 2)
+
     # Display the results
     st.write("Account size:", account_size)
     st.write("Maximum number of stocks in portfolio:", max_stocks_portfolio)
@@ -36,6 +39,7 @@ def main():
     st.write("Position size per stock:", position_size, "Shares")
     st.write("Total buy value:", total_buy_value)
     st.write("Percentage of capital used for this trade:", percentage_used, "%")
+    st.write("Money at risk per trade:", money_at_risk_per_trade)
 
 if __name__ == "__main__":
     main()
