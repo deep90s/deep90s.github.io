@@ -24,5 +24,8 @@ risk_percentage = st.number_input("Enter the percentage of capital you want to r
 # Rest of your code remains unchanged.
 # ...
 
+def main():
+    # Your code goes here
+
 if __name__ == "__main__":
     main()
