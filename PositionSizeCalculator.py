@@ -4,7 +4,7 @@ def main():
     st.title("Position Sizing Calculator")
 
     # Get user inputs
-    account_size = st.number_input("Enter your account size:", step=0.01, default=0.0)
+    account_size = st.number_input("Enter your account size:", step=0.01)
     max_stocks_portfolio = st.number_input("Enter the maximum number of stocks in your portfolio:", step=1)
 
     # Get user inputs for a specific trade
