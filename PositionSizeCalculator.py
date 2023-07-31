@@ -45,7 +45,7 @@ def main():
         percentage_of_account_used = round((sum([position_size] * max_stocks_portfolio) / account_size) * 100, 2)
 
         # Calculate percentage of money used per stock in the portfolio
-        percentage_of_money_used_per_stock = round((position_size / account_size) * 100, 2)
+        percentage_of_money_used_per_stock = round(((stoploss - trade_entry) / trade_entry) * 100, 2)
     else:
         position_size = ""
         risk_money_per_trade = ""
