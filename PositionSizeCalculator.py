@@ -23,6 +23,18 @@ def main():
         stoploss = ""
         risk_percentage = ""
 
+    # Convert the input fields back to numeric values if they are not empty strings
+    if account_size == "":
+        account_size = 0.0
+    if max_stocks_portfolio == "":
+        max_stocks_portfolio = 0
+    if trade_entry == "":
+        trade_entry = 0.0
+    if stoploss == "":
+        stoploss = 0.0
+    if risk_percentage == "":
+        risk_percentage = 0.0
+
     # Calculate position size and round it to the nearest 1st digit
     stop_difference = trade_entry - stoploss
 
@@ -54,4 +66,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-    
