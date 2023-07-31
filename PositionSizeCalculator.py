@@ -4,7 +4,7 @@ def main():
     st.title("Position Sizing Calculator")
 
     # Get user inputs
-    account_size = st.number_input("Enter your account size:", step=0.01)
+    account_size = st.number_input("Enter your account size:", step=0.01, default=0.0)
     max_stocks_portfolio = st.number_input("Enter the maximum number of stocks in your portfolio:", step=1)
 
     # Get user inputs for a specific trade
@@ -32,7 +32,6 @@ def main():
 
     # Check if the input fields are empty
     if account_size != 0.0:
-    
         stop_difference = trade_entry - stoploss
 
         if stop_difference == 0:
@@ -40,8 +39,10 @@ def main():
             return
 
         position_size = round((account_size * (risk_percentage / 100)) / stop_difference, 1)
+        risk_money_per_trade = round(account_size * (risk_percentage / 100), 2)
     else:
         position_size = ""
+        risk_money_per_trade = ""
 
     # Display the results
     st.write("Account size:", account_size)
@@ -49,7 +50,9 @@ def main():
     st.write("Trade entry point:", trade_entry)
     st.write("Stop loss price:", stoploss)
     st.write("Risk percentage per trade:", risk_percentage)
+    st.write("Risk money per Trade:", risk_money_per_trade)
     st.write("Position size per stock:", position_size, "Shares")
+    
 
 if __name__ == "__main__":
     main()
