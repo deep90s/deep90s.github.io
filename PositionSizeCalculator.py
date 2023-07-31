@@ -31,7 +31,8 @@ def main():
         account_size = float(account_size_str)
 
     # Check if the input fields are empty
-    if not account_size.empty():
+    if account_size != 0.0:
+    
         stop_difference = trade_entry - stoploss
 
         if stop_difference == 0:
