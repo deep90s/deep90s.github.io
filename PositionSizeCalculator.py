@@ -12,6 +12,17 @@ def main():
     stoploss = st.number_input("Enter the stop loss price:", step=0.01)
     risk_percentage = st.number_input("Enter the percentage of capital you want to risk per trade:", step=0.01)
 
+    # Store the value of the click
+    clear_inputs = st.button("Clear Inputs")
+
+    # Check if the button was clicked, then set the input values to blank
+    if clear_inputs:
+        account_size = ""
+        max_stocks_portfolio = ""
+        trade_entry = ""
+        stoploss = ""
+        risk_percentage = ""
+
     # Calculate position size and round it to the nearest 1st digit
     stop_difference = trade_entry - stoploss
 
@@ -43,3 +54,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+    
