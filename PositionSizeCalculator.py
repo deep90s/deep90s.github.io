@@ -51,7 +51,7 @@ def main():
         invested_money_per_stock = round(trade_entry * position_size, 2)
 
         # Calculate account to be used per stock in the portfolio
-        account_per_stock = round(account_size / max_stocks_portfolio, 2)
+        account_per_stock = round(account_size / max_stocks_portfolio,0)
     else:
         position_size = ""
         risk_money_per_trade = ""
