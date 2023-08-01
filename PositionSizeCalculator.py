@@ -69,11 +69,11 @@ def main():
     st.write("Risk percentage per trade:", risk_percentage)
     st.write("Position size per stock:", position_size, "Shares")
     st.write("Risk money per Trade:", risk_money_per_trade)
-    st.write("Percentage of money used of total account size:", percentage_of_account_used, "%")
-    st.write("Invested money per stock:", invested_money_per_stock)
-    st.write("Account to be used per stock in the portfolio:", account_per_stock)
     st.write("Risk money percentage per stock:", risk_money_percentage_per_stock, "%")
-
+    st.write("Invested money per stock:", invested_money_per_stock)
+    st.write("Percentage of money used of total account size:", percentage_of_account_used, "%")
+    st.write("Account to be used per stock in the portfolio:", account_per_stock)
+    
 if __name__ == "__main__":
     main()
     
