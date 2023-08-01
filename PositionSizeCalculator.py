@@ -51,7 +51,10 @@ def main():
         invested_money_per_stock = round(trade_entry * position_size, 2)
 
         # Calculate account to be used per stock in the portfolio
-        account_per_stock = round(account_size / max_stocks_portfolio,0)
+        account_per_stock = round(account_size / max_stocks_portfolio, 2)
+
+        # Calculate risk money percentage per stock
+        risk_money_percentage_per_stock = round(((trade_entry - stoploss) / trade_entry) * 100, 2)
     else:
         position_size = ""
         risk_money_per_trade = ""
@@ -59,6 +62,7 @@ def main():
         percentage_of_money_used_per_stock = ""
         invested_money_per_stock = ""
         account_per_stock = ""
+        risk_money_percentage_per_stock = ""
 
     # Display the results
     st.write("Account size:", account_size)
@@ -72,6 +76,7 @@ def main():
     st.write("Percentage of money used per stock in the portfolio:", percentage_of_money_used_per_stock, "%")
     st.write("Invested money per stock:", invested_money_per_stock)
     st.write("Account to be used per stock in the portfolio:", account_per_stock)
+    st.write("Risk money percentage per stock:", risk_money_percentage_per_stock, "%")
 
 if __name__ == "__main__":
     main()
