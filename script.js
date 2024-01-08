@@ -1,95 +1,110 @@
 function validateNumberInput(value, errorMessage) {
     if (isNaN(value) || value <= 0) {
-        document.getElementById("result").innerHTML = errorMessage;
-        return false;
+      document.getElementById("result").innerHTML = errorMessage;
+      return false;
     }
     return true;
-}
-
-function calculateRisk() {
+  }
+  
+  function calculateRisk() {
     var riskPercentage = parseFloat(document.getElementById("riskPercentage").value);
     if (!validateNumberInput(riskPercentage, "Invalid risk percentage input. Please enter a valid positive number.")) {
-        return;
+      return;
     }
-
+  
     var entryPrice = parseFloat(document.getElementById("entryPrice").value);
     if (!validateNumberInput(entryPrice, "Invalid entry price input. Please enter a valid positive number.")) {
-        return;
+      return;
     }
-
+  
     var stopLossPrice = entryPrice - (entryPrice * riskPercentage / 100);
     document.getElementById("calculatedRisk").value = stopLossPrice.toFixed(2);
-
+  
     var totalRiskDollars = document.getElementById("totalRiskDollars");
     if (totalRiskDollars.value.trim() === "") {
-        var totalCapital = parseFloat(document.getElementById("totalCapital").value);
-        var calculatedDollars = (riskPercentage / 100) * totalCapital;
-        totalRiskDollars.value = calculatedDollars.toFixed(2);
+      var totalCapital = parseFloat(document.getElementById("totalCapital").value);
+      var calculatedDollars = (riskPercentage / 100) * totalCapital;
+      totalRiskDollars.value = calculatedDollars.toFixed(2);
     }
-
+  
     var totalRiskPercentage = document.getElementById("totalRiskPercentage");
     if (totalRiskPercentage.value.trim() === "") {
-        totalRiskPercentage.value = riskPercentage.toFixed(2);
+      totalRiskPercentage.value = riskPercentage.toFixed(2);
     }
-
+  
     document.getElementById("result").innerHTML = "";
-}
-
-function updatePositionSize() {
+  }
+  
+  function updatePositionSize() {
     var totalCapital = parseFloat(document.getElementById("totalCapital").value);
     var totalRiskPercentage = parseFloat(document.getElementById("totalRiskPercentage").value);
     var totalRiskDollars = parseFloat(document.getElementById("totalRiskDollars").value);
-
+  
     if (isNaN(totalRiskPercentage) && isNaN(totalRiskDollars)) {
-        document.getElementById("result").innerHTML = "Invalid total risk input. Please enter either percentage or dollars.";
-        return;
+      document.getElementById("result").innerHTML = "Invalid total risk input. Please enter either percentage or dollars.";
+      return;
     }
-
+  
     var totalRisk;
     if (!isNaN(totalRiskPercentage)) {
-        totalRisk = (totalRiskPercentage / 100) * totalCapital;
+      totalRisk = (totalRiskPercentage / 100) * totalCapital;
     } else {
-        totalRisk = totalRiskDollars;
+      totalRisk = totalRiskDollars;
     }
-
+  
     var entryPrice = parseFloat(document.getElementById("entryPrice").value);
     var stopLossPrice = parseFloat(document.getElementById("calculatedRisk").value);
-
+  
     if (entryPrice - stopLossPrice === 0) {
-        document.getElementById("result").innerHTML = "Invalid position size calculation. Entry price and stop loss price are the same.";
-        return;
+      document.getElementById("result").innerHTML = "Invalid position size calculation. Entry price and stop loss price are the same.";
+      return;
     }
-
+  
     var positionSize = Math.ceil(totalRisk / (entryPrice - stopLossPrice));
     document.getElementById("positionSize").value = positionSize;
-
+  
     // New code to calculate Capital Per Stock and Amount Per Trade
     var numberOfStocks = parseFloat(document.getElementById("numberOfStocks").value);
     var capitalPerStock = totalCapital / numberOfStocks;
     document.getElementById("capitalPerStock").value = capitalPerStock.toFixed(2);
-
+  
     var amountPerTrade = entryPrice * positionSize;
     document.getElementById("amountPerTrade").value = amountPerTrade.toFixed(2);
-}
-
-document.getElementById("totalRiskPercentage").addEventListener("input", function () {
-    setTimeout(updatePositionSize, 200); // 200 milliseconds delay
-});
-
-document.getElementById("totalRiskDollars").addEventListener("input", function () {
-    setTimeout(updatePositionSize, 200); // 200 milliseconds delay
-});
-
-document.getElementById("calculatedRisk").addEventListener("input", function () {
-    setTimeout(updatePositionSize, 200); // 200 milliseconds delay
-});
-
-function calculateRiskAndPositionSize() {
+  }
+  
+  document.getElementById("totalRiskPercentage").addEventListener("input", function () {
+    var modifiedRiskPercentage = parseFloat(document.getElementById("totalRiskPercentage").value);
+    var newTotalRiskDollars = (modifiedRiskPercentage / 100) * parseFloat(document.getElementById("totalCapital").value);
+  
+    document.getElementById("totalRiskDollars").value = newTotalRiskDollars.toFixed(2);
+  
+    updatePositionSize();
+  });
+  
+  document.getElementById("totalRiskDollars").addEventListener("input", function () {
+    var modifiedTotalRiskDollars = parseFloat(document.getElementById("totalRiskDollars").value);
+    var newTotalRiskPercentage = (modifiedTotalRiskDollars / parseFloat(document.getElementById("totalCapital").value)) * 100;
+  
+    document.getElementById("totalRiskPercentage").value = newTotalRiskPercentage.toFixed(2);
+  
+    updatePositionSize();
+  });
+  
+  document.getElementById("calculatedRisk").addEventListener("input", function () {
+    var modifiedRisk = parseFloat(document.getElementById("calculatedRisk").value);
+    var newRiskPercentage = ((parseFloat(document.getElementById("entryPrice").value) - modifiedRisk) / parseFloat(document.getElementById("entryPrice").value)) * 100;
+  
+    document.getElementById("riskPercentage").value = newRiskPercentage.toFixed(2);
+  
+    updatePositionSize();
+  });
+  
+  function calculateRiskAndPositionSize() {
     calculateRisk();
     updatePositionSize();
-}
-
-function resetFields() {
+  }
+  
+  function resetFields() {
     document.getElementById("totalCapital").value = "";
     document.getElementById("numberOfStocks").value = "";
     document.getElementById("totalRiskPercentage").value = "";
@@ -101,4 +116,5 @@ function resetFields() {
     document.getElementById("capitalPerStock").value = "";
     document.getElementById("amountPerTrade").value = "";
     document.getElementById("result").innerHTML = "";
-}
+  }
+  
