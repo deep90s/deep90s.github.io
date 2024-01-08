@@ -36,6 +36,7 @@ function validateNumberInput(value, errorMessage) {
   }
   
   function updatePositionSize() {
+    console.log("Update Position Size function called");
     var totalCapital = parseFloat(document.getElementById("totalCapital").value);
     var totalRiskPercentage = parseFloat(document.getElementById("totalRiskPercentage").value);
     var totalRiskDollars = parseFloat(document.getElementById("totalRiskDollars").value);
