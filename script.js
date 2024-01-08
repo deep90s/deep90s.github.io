@@ -72,14 +72,17 @@ function updatePositionSize() {
     document.getElementById("amountPerTrade").value = amountPerTrade.toFixed(2);
 }
 
-document.getElementById("totalRiskPercentage").addEventListener("input", updatePositionSize);
-document.getElementById("totalRiskPercentage").addEventListener("change", updatePositionSize);
+document.getElementById("totalRiskPercentage").addEventListener("input", function () {
+    setTimeout(updatePositionSize, 200); // 200 milliseconds delay
+});
 
-document.getElementById("totalRiskDollars").addEventListener("input", updatePositionSize);
-document.getElementById("totalRiskDollars").addEventListener("change", updatePositionSize);
+document.getElementById("totalRiskDollars").addEventListener("input", function () {
+    setTimeout(updatePositionSize, 200); // 200 milliseconds delay
+});
 
-document.getElementById("calculatedRisk").addEventListener("input", updatePositionSize);
-document.getElementById("calculatedRisk").addEventListener("change", updatePositionSize);
+document.getElementById("calculatedRisk").addEventListener("input", function () {
+    setTimeout(updatePositionSize, 200); // 200 milliseconds delay
+});
 
 function calculateRiskAndPositionSize() {
     calculateRisk();
